@@ -33,7 +33,9 @@ ALLOWED_HOSTS = []
 CUSTOM_APPS = [
     'users.apps.UsersConfig',
     'rooms.apps.RoomsConfig',
-    'common.apps.CommonConfig'
+    'common.apps.CommonConfig',
+    'experiences.apps.ExperiencesConfig',
+    'categories.apps.CategoriesConfig'
 ]
 
 SYSTEM_APPS = [
