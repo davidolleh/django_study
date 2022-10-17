@@ -29,11 +29,11 @@ class Booking(CommonModel):
     )
     check_in = models.DateField(
         null=True, 
-        blank=True
-        )
+        blank=True,
+    )
     check_out = models.DateField(
         null=True,
-        black=True,
+        blank=True,
     )
     experience_time = models.DateTimeField(
         null=True,
