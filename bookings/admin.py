@@ -14,6 +14,6 @@ class BookingAdmin(admin.ModelAdmin):
         'guests',
     )
 
-    list_filter= (
+    list_filter = (
         'kind',
     )
