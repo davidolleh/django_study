@@ -3,8 +3,8 @@ from tabnanny import verbose
 from django.db import models
 from common.models import CommonModel
 
-class Room(CommonModel):
 
+class Room(CommonModel):
     class RoomKindChoices(models.TextChoices):
         ENTIRE_PLACE = ("entire_place", "Entire Place")
         PRIVATE_ROOM = ("private_room", "Private Room")
@@ -26,20 +26,22 @@ class Room(CommonModel):
         "categories.Category",
         null=True,
         blank=True,
-        on_delete = models.SET_NULL
+        on_delete=models.SET_NULL
     )
 
     def __str__(self) -> str:
         return self.name
 
+    def total_amenities(self):
+        return self.amenities.count()
+
 
 class Amenity(CommonModel):
     name = models.CharField(max_length=150)
-    descripteion = models.CharField(max_length=150, null=True)
+    description = models.CharField(max_length=150, null=True)
 
     def __str__(self) -> str:
         return self.name
 
     class Meta:
         verbose_name_plural = "Amenities"
-
