@@ -20,10 +20,18 @@ class Room(CommonModel):
     address = models.CharField(max_length=250)
     pet_friendly = models.BooleanField(default=True)
     kind = models.CharField(max_length=20, choices=RoomKindChoices.choices)
-    owner = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    amenities = models.ManyToManyField("rooms.Amenity")
+    owner = models.ForeignKey(
+        "users.User",
+        related_name="rooms",
+        on_delete=models.CASCADE
+    )
+    amenities = models.ManyToManyField(
+        "rooms.Amenity",
+        related_name="rooms"
+    )
     category = models.ForeignKey(
         "categories.Category",
+        related_name="rooms",
         null=True,
         blank=True,
         on_delete=models.SET_NULL

@@ -1,6 +1,7 @@
 from django.db import models
 from common.models import CommonModel
 
+
 class Booking(CommonModel):
     class BookingKindChoices(models.TextChoices):
         ROOM = "room", "Room"
@@ -8,27 +9,30 @@ class Booking(CommonModel):
 
     kind = models.CharField(
         max_length=15,
-        choices = BookingKindChoices.choices
+        choices=BookingKindChoices.choices
     )
 
     user = models.ForeignKey(
         'users.User',
-        on_delete=models.CASCADE
+        related_name='bookings',
+        on_delete=models.CASCADE,
     )
     room = models.ForeignKey(
         'rooms.Room',
+        related_name='bookings',
         null=True,
         blank=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
     )
     experience = models.ForeignKey(
         'experiences.Experience',
+        related_name='bookings',
         null=True,
         blank=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
     )
     check_in = models.DateField(
-        null=True, 
+        null=True,
         blank=True,
     )
     check_out = models.DateField(
